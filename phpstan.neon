@@ -1,0 +1,7 @@
+parameters:
+    level: 6
+    paths:
+        - aml_env/framework
+        - app
+    excludePaths:
+        - storage

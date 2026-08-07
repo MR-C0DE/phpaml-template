@@ -1,0 +1,13 @@
+# Active la réécriture d'URL
+RewriteEngine On
+
+# Si la ressource existe dans app/public, la rediriger vers là
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{DOCUMENT_ROOT}/app/public/$1 -f
+RewriteRule ^(.+)$ /app/public/$1 [L]
+
+# Définissez la règle de réécriture pour rediriger toutes les requêtes vers index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?url=$1 [NC,L]

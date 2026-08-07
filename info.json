@@ -1,0 +1,16 @@
+{
+    "name": "phpaml",
+    "version": "1.0.0",
+    "description": "PHP Application with MVC Architecture",
+    "aml": {
+      "environment": "aml_env"
+    },
+    "scripts": {
+      "start": "aml serve",
+      "test": "aml test"
+    },
+    "dependencies": {
+      "php": "^8.2"
+    }
+  }
+  
