@@ -12,8 +12,8 @@ return [
     'views_path' => dirname(__DIR__) . '/app/views',
     'database' => [
         'dsn' => Env::get('DATABASE_DSN', 'sqlite:' . dirname(__DIR__) . '/aml_env/storage/database.sqlite'),
-        'username' => Env::get('DATABASE_USER'),
-        'password' => Env::get('DATABASE_PASSWORD'),
+        'username' => Env::get('DATABASE_USER', 'root'),
+        'password' => Env::get('DATABASE_PASSWORD', 'root'),
     ],
     'routes' => [
         'GET /' => [
