@@ -19,13 +19,16 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: MR-C0DE/phpaml-framework
-          path: aml_env/framework
+          path: .framework-source
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
           extensions: pdo, pdo_sqlite
           tools: composer
       - run: composer validate --strict
+      - name: Install framework source layout
+        shell: bash
+        run: mkdir -p aml_env/framework && cp -R .framework-source/src/. aml_env/framework/
       - run: composer install --no-interaction --prefer-dist
       - name: Lint application sources
         shell: bash
