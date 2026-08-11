@@ -68,7 +68,7 @@ Architecture
 
 - `app/Controllers` et `app/Models` : application ;
 - `app/views` : vues et vues partielles ;
-- `app/public` : CSS, JavaScript et images ;
+- `public/` : seul dossier exposé au web, avec `index.php`, CSS, JavaScript et images ;
 - `configs/app.php` : routes, middlewares, environnement et base de données ;
 - `database/migrations` : migrations ;
 - `tests/` : tests automatisés.
@@ -76,6 +76,11 @@ Architecture
 Le moteur du framework, son autoloading et les dépendances sont isolés dans
 `aml_env/`, y compris la base SQLite et le cache. Le développeur n’a normalement
 jamais besoin de modifier ce dossier.
+
+En production, configurez Apache ou Nginx avec `public/` comme racine
+documentaire. La racine du projet, `.env`, `configs/`, `database/`, `tests/` et
+`aml_env/` ne doivent jamais être accessibles par HTTP. Utilisez HTTPS et
+conservez `APP_DEBUG=false`.
 
 Exemple de route dynamique nommée
 ---------------------------------

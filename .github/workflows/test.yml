@@ -16,12 +16,21 @@ jobs:
         php: ['8.2', '8.4']
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: MR-C0DE/phpaml-framework
+          path: aml_env/framework
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
           extensions: pdo, pdo_sqlite
           tools: composer
       - run: composer validate --strict
+      - run: composer install --no-interaction --prefer-dist
       - name: Lint application sources
         shell: bash
         run: find app configs tests -name '*.php' -print0 | xargs -0 -n1 php -l
+      - name: Run application tests
+        run: php tests/run.php
+      - name: Run PHPStan
+        run: ./aml_env/bin/phpstan analyse --no-progress

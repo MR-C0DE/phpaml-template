@@ -1,0 +1,14 @@
+Options -Indexes
+RewriteEngine On
+
+# Refuser les fichiers cachés et les formats internes même s'ils sont copiés ici par erreur.
+RewriteRule (^|/)\. - [F,L]
+<FilesMatch "(?i)\.(env|ini|log|lock|sqlite|sqlite3|sql|phar|zip|tar|gz|bak|dist|yml|yaml)$">
+    Require all denied
+</FilesMatch>
+
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+RewriteRule ^ index.php [QSA,L]

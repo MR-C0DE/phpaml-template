@@ -8,7 +8,11 @@ use PHPAML\Middleware\SecurityHeadersMiddleware;
 
 return [
     'name' => 'PHPAML',
-    'debug' => Env::bool('APP_DEBUG', true),
+    'debug' => Env::bool('APP_DEBUG', false),
+    'session' => [
+        'lifetime' => 7200,
+        'same_site' => 'Lax',
+    ],
     'views_path' => dirname(__DIR__) . '/app/views',
     'database' => [
         'dsn' => Env::get('DATABASE_DSN', 'sqlite:' . dirname(__DIR__) . '/aml_env/storage/database.sqlite'),

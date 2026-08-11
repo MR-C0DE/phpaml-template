@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="/app/public/img/favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="/app/public/css/index.css">
+    <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/css/index.css">
     <title><?= htmlspecialchars($model->getName(), ENT_QUOTES, 'UTF-8') ?></title>
 </head>
 <body>
@@ -37,6 +37,6 @@
     </section>
 </main>
 <?php $this->partial('footer.php') ?>
-<script src="/app/public/js/main.js"></script>
+<script src="/js/main.js"></script>
 </body>
 </html>
