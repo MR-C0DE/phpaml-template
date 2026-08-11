@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php $this->partial('seo.php') ?>
     <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="/css/index.css">
-    <title><?= htmlspecialchars($model->getName(), ENT_QUOTES, 'UTF-8') ?></title>
 </head>
 <body>
 <?php $this->partial('header.php') ?>

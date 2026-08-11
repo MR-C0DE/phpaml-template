@@ -128,6 +128,9 @@ test('WebApplication rend la route principale', function (): void {
     $response = (new WebApplication($config))->handle(new Request('GET', '/'));
     expect($response->status() === 200, 'La route principale ne retourne pas 200.');
     expect(str_contains($response->content(), 'Bienvenue dans PHPAML'), 'La vue principale est incorrecte.');
+    expect(str_contains($response->content(), '<meta name="description"'), 'La description SEO manque.');
+    expect(str_contains($response->content(), '<link rel="canonical"'), 'L’URL canonique manque.');
+    expect(str_contains($response->content(), 'application/ld+json'), 'Les données structurées JSON-LD manquent.');
     expect(($response->headers()['X-Frame-Options'] ?? null) === 'DENY', 'Les en-têtes de sécurité manquent.');
 });
 
