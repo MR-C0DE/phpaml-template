@@ -14,6 +14,14 @@ return [
         'same_site' => 'Lax',
     ],
     'views_path' => dirname(__DIR__) . '/app/views',
+    'log_path' => dirname(__DIR__) . '/aml_env/storage/logs/application.log',
+    'rate_limit' => [
+        'enabled' => true,
+        'storage_path' => dirname(__DIR__) . '/aml_env/storage/rate-limits',
+        'limit' => 60,
+        'window' => 60,
+        'methods' => ['POST', 'PUT', 'PATCH', 'DELETE'],
+    ],
     'database' => [
         'dsn' => Env::get('DATABASE_DSN', 'sqlite:' . dirname(__DIR__) . '/aml_env/storage/database.sqlite'),
         'username' => Env::get('DATABASE_USER', 'root'),
