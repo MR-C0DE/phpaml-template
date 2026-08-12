@@ -4,7 +4,7 @@
     "description": "PHP Application with MVC Architecture",
     "aml": {
       "environment": "aml_env",
-      "framework": "0.2.0-beta.1"
+      "framework": "0.2.0"
     },
     "scripts": {
       "start": "aml serve",
