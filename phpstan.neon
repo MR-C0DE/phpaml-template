@@ -6,6 +6,6 @@ parameters:
         - configs
         - public/index.php
     bootstrapFiles:
-        - aml_env/autoload.php
+        - runtime/autoload.php
     excludePaths:
-        - aml_env/storage (?)
+        - runtime/storage (?)

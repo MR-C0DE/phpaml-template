@@ -12,12 +12,12 @@
     },
     "autoload": {
         "psr-4": {
-            "PHPAML\\": "aml_env/framework/",
+            "PHPAML\\": "runtime/framework/",
             "App\\": "app/"
         }
     },
     "config": {
-        "vendor-dir": "aml_env",
+        "vendor-dir": "runtime",
         "sort-packages": true
     },
     "scripts": {

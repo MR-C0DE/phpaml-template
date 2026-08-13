@@ -1,6 +1,6 @@
 # Production deployment
 
-Only `public/` may be exposed by the web server. Never point a document root at the project directory. Keep `.env`, `aml_env/`, `app/`, `configs/`, `database/`, and `tests/` outside the public document root.
+Only `public/` may be exposed by the web server. Never point a document root at the project directory. Keep `.env`, `runtime/`, `app/`, `configs/`, `database/`, and `tests/` outside the public document root.
 
 Before deployment:
 
@@ -12,7 +12,7 @@ aml env:set APP_URL https://example.com
 aml doctor --production
 ```
 
-Set a unique `APP_KEY` of at least 32 random characters, enable HTTPS, make `aml_env/storage` and `aml_env/cache` writable only by the application user, and back up the database before migrations. `aml serve` is development-only.
+Set a unique `APP_KEY` of at least 32 random characters, enable HTTPS, make `runtime/storage` and `runtime/cache` writable only by the application user, and back up the database before migrations. `aml serve` is development-only.
 
 ## Apache
 

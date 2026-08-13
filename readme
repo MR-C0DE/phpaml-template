@@ -22,7 +22,7 @@ Le générateur n’écrase jamais un fichier existant.
 Développement
 -------------
 
-Préparer les dépendances dans l’environnement propre à PHPAML, `aml_env/` :
+Préparer les dépendances dans l’environnement propre à PHPAML, `runtime/` :
 
     aml install
 
@@ -31,7 +31,7 @@ Pour une installation de production sans outils de développement :
     aml install --production
 
 Les versions exactes sont enregistrées dans `composer.lock`. Le manifeste de
-l’installation se trouve dans `aml_env/aml-installed.json`.
+l’installation se trouve dans `runtime/aml-installed.json`.
 
     aml serve
     aml routes
@@ -74,12 +74,12 @@ Architecture
 - `tests/` : tests automatisés.
 
 Le moteur du framework, son autoloading et les dépendances sont isolés dans
-`aml_env/`, y compris la base SQLite et le cache. Le développeur n’a normalement
+`runtime/`, y compris la base SQLite et le cache. Le développeur n’a normalement
 jamais besoin de modifier ce dossier.
 
 En production, configurez Apache ou Nginx avec `public/` comme racine
 documentaire. La racine du projet, `.env`, `configs/`, `database/`, `tests/` et
-`aml_env/` ne doivent jamais être accessibles par HTTP. Utilisez HTTPS et
+`runtime/` ne doivent jamais être accessibles par HTTP. Utilisez HTTPS et
 conservez `APP_DEBUG=false`.
 
 Exemple de route dynamique nommée
