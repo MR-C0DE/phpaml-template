@@ -28,7 +28,7 @@ jobs:
       - run: composer validate --strict
       - name: Install framework source layout
         shell: bash
-        run: mkdir -p aml_env/framework && cp -R .framework-source/src/. aml_env/framework/
+        run: mkdir -p runtime/framework && cp -R .framework-source/src/. runtime/framework/
       - run: composer install --no-interaction --prefer-dist
       - name: Lint application sources
         shell: bash
@@ -36,4 +36,4 @@ jobs:
       - name: Run application tests
         run: php tests/run.php
       - name: Run PHPStan
-        run: ./aml_env/bin/phpstan analyse --no-progress
+        run: ./runtime/bin/phpstan analyse --no-progress

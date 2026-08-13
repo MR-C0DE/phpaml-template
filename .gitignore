@@ -1,4 +1,4 @@
 .env
 /vendor/
-/aml_env/
+/runtime/
 .DS_Store

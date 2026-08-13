@@ -12,13 +12,13 @@ use PHPAML\Middleware\MiddlewareInterface;
 use PHPAML\Validation\Validator;
 
 $root = dirname(__DIR__);
-$installedAutoloader = $root . '/aml_env/autoload.php';
+$installedAutoloader = $root . '/runtime/autoload.php';
 if (is_file($installedAutoloader)) {
     require_once $installedAutoloader;
 } else {
-    require_once $root . '/aml_env/framework/Autoloader.php';
+    require_once $root . '/runtime/framework/Autoloader.php';
     Autoloader::register([
-        'PHPAML\\' => $root . '/aml_env/framework',
+        'PHPAML\\' => $root . '/runtime/framework',
         'App\\' => $root . '/app',
     ]);
 }

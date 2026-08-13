@@ -27,17 +27,17 @@ if (PHP_SAPI === 'cli-server' && $requestPath === '/_aml/live-reload') {
     return;
 }
 
-$moduleAutoloader = $root . '/aml_env/autoload.php';
+$moduleAutoloader = $root . '/runtime/autoload.php';
 if (is_file($moduleAutoloader)) {
     require_once $moduleAutoloader;
 } else {
-    $frameworkAutoloader = $root . '/aml_env/framework/Autoloader.php';
+    $frameworkAutoloader = $root . '/runtime/framework/Autoloader.php';
     if (!is_file($frameworkAutoloader)) {
         http_response_code(500);
         exit('Application indisponible.');
     }
     require_once $frameworkAutoloader;
-    \PHPAML\Autoloader::register(['PHPAML\\' => $root . '/aml_env/framework', 'App\\' => $root . '/app']);
+    \PHPAML\Autoloader::register(['PHPAML\\' => $root . '/runtime/framework', 'App\\' => $root . '/app']);
 }
 
 \PHPAML\Config\Env::load($root . '/.env');

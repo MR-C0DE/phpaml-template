@@ -6,7 +6,7 @@ Modèle officiel utilisé par :
 aml create mon-projet
 ```
 
-Le moteur et les dépendances sont installés dans `aml_env/`. La racine contient
+Le moteur et les dépendances sont installés dans `runtime/`. La racine contient
 uniquement les fichiers utiles au développement de l’application.
 
 Le serveur web doit utiliser `public/` comme racine documentaire. Ne publiez
