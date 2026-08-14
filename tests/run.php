@@ -127,7 +127,8 @@ test('WebApplication rend la route principale', function (): void {
     $config = require dirname(__DIR__) . '/configs/app.php';
     $response = (new WebApplication($config))->handle(new Request('GET', '/'));
     expect($response->status() === 200, 'La route principale ne retourne pas 200.');
-    expect(str_contains($response->content(), 'Bienvenue dans PHPAML'), 'La vue principale est incorrecte.');
+    expect(str_contains($response->content(), 'Construisez clairement.'), 'La vue principale est incorrecte.');
+    expect(str_contains($response->content(), '/img/phpaml-logo-violet-lime.png'), 'Le logo PHPAML est absent de la vue principale.');
     expect(str_contains($response->content(), '<meta name="description"'), 'La description SEO manque.');
     expect(str_contains($response->content(), '<link rel="canonical"'), 'L’URL canonique manque.');
     expect(str_contains($response->content(), 'application/ld+json'), 'Les données structurées JSON-LD manquent.');
