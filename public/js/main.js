@@ -3,6 +3,26 @@
 document.documentElement.classList.add('js-enabled');
 
 document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('[data-language]');
+    const translated = document.querySelectorAll('[data-en][data-fr]');
+
+    const setLanguage = (language) => {
+        document.documentElement.lang = language;
+        translated.forEach((element) => {
+            element.textContent = element.dataset[language];
+        });
+        buttons.forEach((button) => {
+            button.classList.toggle('active', button.dataset.language === language);
+        });
+        window.localStorage.setItem('phpaml-language', language);
+    };
+
+    buttons.forEach((button) => {
+        button.addEventListener('click', () => setLanguage(button.dataset.language));
+    });
+
+    const savedLanguage = window.localStorage.getItem('phpaml-language');
+    setLanguage(savedLanguage === 'fr' ? 'fr' : 'en');
     document.dispatchEvent(new CustomEvent('phpaml:ready'));
 });
 

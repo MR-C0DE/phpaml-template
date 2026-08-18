@@ -2,7 +2,7 @@
   "site_name": "PHPAML",
   "title": "PHPAML application",
   "description": "A fast, structured application built with the PHPAML MVC mini-framework.",
-  "base_url": "http://localhost:8000",
+  "base_url": "http://127.0.0.1:8910",
   "locale": "en_CA",
   "robots": "index,follow",
   "image": "",
