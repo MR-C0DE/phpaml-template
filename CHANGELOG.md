@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.4.0-beta.4 — 2026-08-18
+
+- Framework `0.2.1-beta.1` requis pour le pipeline AML View ;
+- correction de l’initialisation sans vues MVC et du rendu déclaratif via le
+  pipeline HTTP principal ;
+- suppression des avertissements `views_path` et de la fausse réponse 404 à
+  l’ouverture d’un nouveau projet AML View.
+
 ## 0.4.0-beta.3 — 2026-08-17
 
 - nouvelle page d’accueil moderne inspirée des grandes plateformes web ;
