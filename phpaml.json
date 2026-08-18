@@ -4,7 +4,7 @@
     "description": "PHP Application with MVC Architecture",
     "runtime": {
       "directory": "runtime",
-      "framework": "0.2.0"
+      "framework": "0.2.1-beta.1"
     },
     "scripts": {
       "start": "aml serve",
