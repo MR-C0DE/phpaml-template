@@ -1,0 +1,46 @@
+name: Publish template archive
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  archive:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Build reproducible archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          version="${GITHUB_REF_NAME#v}"
+          archive="phpaml-template-${version}.zip"
+          git archive --format=zip --prefix="phpaml-template-${version}/" --output="$archive" "$GITHUB_REF_NAME"
+          sha256sum "$archive" > "$archive.sha256"
+          sha256sum --check "$archive.sha256"
+          unzip -t "$archive"
+
+      - name: Publish archive and checksum
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          version="${GITHUB_REF_NAME#v}"
+          archive="phpaml-template-${version}.zip"
+          prerelease=()
+          if [[ "$version" =~ (alpha|beta|rc) ]]; then prerelease=(--prerelease); fi
+          if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
+            gh release upload "$GITHUB_REF_NAME" "$archive" "$archive.sha256" --clobber
+          else
+            gh release create "$GITHUB_REF_NAME" "$archive" "$archive.sha256" \
+              "${prerelease[@]}" --verify-tag --generate-notes --title "PHPAML Template ${version}"
+          fi
+
