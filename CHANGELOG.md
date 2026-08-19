@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.0-beta.5 — 2026-08-19
+
+- retire le dossier `database/` de la racine du starter ;
+- les migrations et seeders sont désormais créés à la demande sous
+  `runtime/database/` par PHPAML Data.
+
 ## 0.4.0-beta.4 — 2026-08-18
 
 - Framework `0.2.1-beta.1` requis pour le pipeline AML View ;
