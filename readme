@@ -70,7 +70,7 @@ Architecture
 - `app/views` : vues et vues partielles ;
 - `public/` : seul dossier exposé au web, avec `index.php`, CSS, JavaScript et images ;
 - `configs/app.php` : routes, middlewares, environnement et base de données ;
-- `database/migrations` : migrations ;
+- `runtime/database/migrations` : migrations internes ;
 - `tests/` : tests automatisés.
 
 Le moteur du framework, son autoloading et les dépendances sont isolés dans
