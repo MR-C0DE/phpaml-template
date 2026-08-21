@@ -1,10 +1,47 @@
 {
     "name": "phpaml",
-    "version": "1.3.1",
+    "version": "0.5.0-beta.1",
     "description": "PHP Application with MVC Architecture",
+    "application": {
+      "type": "classic",
+      "views": "app/views",
+      "debug": false,
+      "session": {
+        "lifetime": 7200,
+        "same_site": "Lax"
+      },
+      "rate_limit": {
+        "enabled": true,
+        "limit": 60,
+        "window": 60
+      },
+      "middlewares": [
+        "PHPAML\\Middleware\\SecurityHeadersMiddleware"
+      ]
+    },
+    "database": {
+      "dsn": "sqlite:runtime/storage/database.sqlite",
+      "username": "root",
+      "password": ""
+    },
+    "seo": {
+      "site_name": "PHPAML",
+      "title": "PHPAML application",
+      "description": "A fast, structured application built with the PHPAML MVC mini-framework.",
+      "base_url": "http://127.0.0.1:8910",
+      "locale": "en_CA",
+      "robots": "index,follow",
+      "image": "",
+      "twitter_card": "summary_large_image",
+      "type": "WebSite",
+      "author": "",
+      "theme_color": "#6d28d9",
+      "allow": ["/"],
+      "disallow": []
+    },
     "runtime": {
       "directory": "runtime",
-      "framework": "0.2.1-beta.1"
+      "framework": "0.3.0-beta.1"
     },
     "scripts": {
       "start": "aml serve",
