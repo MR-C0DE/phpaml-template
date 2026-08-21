@@ -124,7 +124,7 @@ test('Validator applique les règles courantes', function (): void {
 });
 
 test('WebApplication rend la route principale', function (): void {
-    $config = require dirname(__DIR__) . '/configs/app.php';
+    $config = \PHPAML\Config\ApplicationConfig::load(dirname(__DIR__));
     $response = (new WebApplication($config))->handle(new Request('GET', '/'));
     expect($response->status() === 200, 'La route principale ne retourne pas 200.');
     expect(str_contains($response->content(), 'Build PHP apps with clarity.'), 'La vue principale anglaise est incorrecte.');
@@ -137,13 +137,13 @@ test('WebApplication rend la route principale', function (): void {
 });
 
 test('WebApplication retourne une réponse 404', function (): void {
-    $config = require dirname(__DIR__) . '/configs/app.php';
+    $config = \PHPAML\Config\ApplicationConfig::load(dirname(__DIR__));
     $response = (new WebApplication($config))->handle(new Request('GET', '/inconnue'));
     expect($response->status() === 404, 'Une route inconnue doit retourner 404.');
 });
 
 test('WebApplication protège les méthodes d’écriture avec CSRF par défaut', function (): void {
-    $config = require dirname(__DIR__) . '/configs/app.php';
+    $config = \PHPAML\Config\ApplicationConfig::load(dirname(__DIR__));
     $config['routes']['POST /protected'] = [RouteTestController::class, 'show'];
     $response = (new WebApplication($config))->handle(new Request('POST', '/protected'));
     expect($response->status() === 419, 'Une requête POST sans jeton CSRF doit être refusée.');

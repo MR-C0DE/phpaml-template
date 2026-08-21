@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-$seoFile = dirname(__DIR__, 3) . '/configs/seo.json';
-$seo = is_file($seoFile) ? json_decode((string) file_get_contents($seoFile), true) : [];
-$seo = is_array($seo) ? $seo : [];
+$manifestFile = dirname(__DIR__, 3) . '/phpaml.json';
+$manifest = is_file($manifestFile) ? json_decode((string) file_get_contents($manifestFile), true) : [];
+$seo = is_array($manifest) && is_array($manifest['seo'] ?? null) ? $manifest['seo'] : [];
 $escape = static fn (mixed $value): string => htmlspecialchars((string) $value, ENT_QUOTES, 'UTF-8');
 $baseUrl = rtrim((string) ($seo['base_url'] ?? ''), '/');
 $path = (string) (parse_url((string) ($_SERVER['REQUEST_URI'] ?? '/'), PHP_URL_PATH) ?: '/');

@@ -11,7 +11,7 @@ if (PHP_SAPI === 'cli-server' && $requestPath !== '/' && is_file(__DIR__ . $requ
 
 if (PHP_SAPI === 'cli-server' && $requestPath === '/_aml/live-reload') {
     $fingerprint = [];
-    foreach ([$root . '/app', $root . '/configs', $root . '/database', __DIR__] as $watchedRoot) {
+    foreach ([$root . '/app', $root . '/routes', $root . '/database', __DIR__] as $watchedRoot) {
         if (!is_dir($watchedRoot)) { continue; }
         $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($watchedRoot, FilesystemIterator::SKIP_DOTS));
         foreach ($files as $file) {
@@ -40,6 +40,5 @@ if (is_file($moduleAutoloader)) {
     \PHPAML\Autoloader::register(['PHPAML\\' => $root . '/runtime/framework', 'App\\' => $root . '/app']);
 }
 
-\PHPAML\Config\Env::load($root . '/.env');
-$config = require $root . '/configs/app.php';
+$config = \PHPAML\Config\ApplicationConfig::load($root);
 (new \PHPAML\WebApplication($config))->run();

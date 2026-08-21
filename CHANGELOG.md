@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.5.0-beta.1 — 2026-08-21
+
+- remplace `configs/app.php` par la configuration déclarative dans
+  `phpaml.json` et `.env` ;
+- ajoute `routes/WebApp.php` pour les applications classiques ;
+- réserve `runtime/config/app.php` à la configuration générée ;
+- prépare une base commune aux projets classiques, AML View et API ;
+- requiert PHPAML Framework `0.3.0-beta.1`.
+
 ## 0.4.0-beta.5 — 2026-08-19
 
 - retire le dossier `database/` de la racine du starter ;

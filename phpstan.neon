@@ -3,7 +3,7 @@ parameters:
     paths:
         - app/Controllers
         - app/Models
-        - configs
+        - routes
         - public/index.php
     bootstrapFiles:
         - runtime/autoload.php
