@@ -12,3 +12,7 @@ uniquement les fichiers utiles au développement de l’application.
 Le serveur web doit utiliser `public/` comme racine documentaire. Ne publiez
 jamais la racine complète du projet. Copiez `.env.example` vers `.env`, gardez
 `APP_DEBUG=false` en production et servez exclusivement le site en HTTPS.
+
+## Licence
+
+PHPAML Application Template est distribué sous [licence MIT](LICENSE).

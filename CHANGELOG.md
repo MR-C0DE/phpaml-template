@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.0-beta.2 — 2026-08-23
+
+- adopte la licence MIT pour le modèle officiel et les nouveaux projets
+  générés à partir de celui-ci ;
+- requiert PHPAML Framework `0.3.0-beta.2`.
+
 ## 0.5.0-beta.1 — 2026-08-21
 
 - remplace `configs/app.php` par la configuration déclarative dans
