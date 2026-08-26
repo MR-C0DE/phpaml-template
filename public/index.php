@@ -40,7 +40,10 @@ if (is_file($moduleAutoloader)) {
     \PHPAML\Autoloader::register(['PHPAML\\' => $root . '/runtime/framework', 'App\\' => $root . '/app']);
 }
 
-/** @param array<string, mixed> $config @return array<string, mixed> */
+/**
+ * @param array<string, mixed> $config
+ * @return array<string, mixed>
+ */
 function phpamlComposeApplication(array $config, string $root): array
 {
     $config['legacy_data_bootstrap'] = false;
@@ -55,8 +58,8 @@ function phpamlComposeApplication(array $config, string $root): array
         }
 
         $manager = new \AML\Data\Connections\ConnectionManager($root, $dataConfig);
-        $container->set(\AML\Data\Connections\ConnectionManager::class, $manager);
-        $container->set(\AML\Data\Connection::class, $manager->sql());
+        $container->set('AML\\Data\\Connections\\ConnectionManager', $manager);
+        $container->set('AML\\Data\\Connection', $manager->sql());
     };
 
     return $config;
