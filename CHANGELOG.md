@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.5.0-beta.3 — 2026-08-26
+
+- déplace la composition de PHPAML Data dans le point d’entrée de
+  l’application afin de préserver l’indépendance du Framework ;
+- initialise tous les modules optionnels via le mécanisme générique de
+  `bootstrappers` ;
+- requiert PHPAML Framework `0.3.0-beta.3`.
+
 ## 0.5.0-beta.2 — 2026-08-23
 
 - adopte la licence MIT pour le modèle officiel et les nouveaux projets
