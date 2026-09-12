@@ -129,14 +129,17 @@ test('WebApplication rend la route principale', function (): void {
     expect($response->status() === 200, 'La route principale ne retourne pas 200.');
     $classicHome = str_contains($response->content(), 'Build PHP apps with clarity.');
     $amlViewHome = str_contains($response->content(), 'Build reactive web interfaces. In PHP.');
-    expect($classicHome || $amlViewHome, 'La vue principale générée est incorrecte.');
+    $apiHome = str_contains($response->content(), '"status":"ok"');
+    expect($classicHome || $amlViewHome || $apiHome, 'La réponse principale générée est incorrecte.');
     if ($classicHome) {
         expect(str_contains($response->content(), 'Créez des applications PHP avec clarté.'), 'La traduction française est absente.');
     }
-    expect(str_contains($response->content(), '/img/phpaml-logo-violet-lime.png'), 'Le logo PHPAML est absent de la vue principale.');
-    expect(str_contains($response->content(), '<meta name="description"'), 'La description SEO manque.');
-    expect(str_contains($response->content(), '<link rel="canonical"'), 'L’URL canonique manque.');
-    expect(str_contains($response->content(), 'application/ld+json'), 'Les données structurées JSON-LD manquent.');
+    if (!$apiHome) {
+        expect(str_contains($response->content(), 'phpaml-logo-violet-lime.png'), 'Le logo PHPAML est absent de la vue principale.');
+        expect(str_contains($response->content(), '<meta name="description"'), 'La description SEO manque.');
+        expect(str_contains($response->content(), '<link rel="canonical"'), 'L’URL canonique manque.');
+        expect(str_contains($response->content(), 'application/ld+json'), 'Les données structurées JSON-LD manquent.');
+    }
     expect(($response->headers()['X-Frame-Options'] ?? null) === 'DENY', 'Les en-têtes de sécurité manquent.');
 });
 

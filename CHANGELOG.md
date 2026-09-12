@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.5.0-beta.6 — 2026-09-12
+
+- adapte le test du point d’entrée au contrat AML View, où le frontend est
+  monté par `FileApplication` et le contrôleur historique expose la santé JSON.
+
 ## 0.5.0-beta.5 — 2026-09-12
 
 - rend le test de la page d’accueil compatible avec les projets classiques et
