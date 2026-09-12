@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.5.0-beta.4 — 2026-09-12
+
+- impose `public/` comme seule racine web et refuse les traversées de chemin,
+  y compris leurs formes encodées et doublement encodées ;
+- vérifie en CI que le framework installé est strictement identique à ses
+  sources ;
+- ajoute un test HTTP réel du projet généré et référence Framework
+  `0.3.0-beta.4`.
+
 ## 0.5.0-beta.3 — 2026-08-26
 
 - déplace la composition de PHPAML Data dans le point d’entrée de

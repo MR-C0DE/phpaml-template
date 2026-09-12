@@ -5,8 +5,27 @@ declare(strict_types=1);
 $root = dirname(__DIR__);
 $requestPath = (string) (parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?: '/');
 
-if (PHP_SAPI === 'cli-server' && $requestPath !== '/' && is_file(__DIR__ . $requestPath)) {
-    return false;
+$decodedPath = $requestPath;
+for ($pass = 0; $pass < 3; $pass++) {
+    $nextPath = rawurldecode($decodedPath);
+    if ($nextPath === $decodedPath) { break; }
+    $decodedPath = $nextPath;
+}
+$decodedPath = str_replace('\\', '/', $decodedPath);
+if (str_contains($decodedPath, "\0") || preg_match('#(?:^|/)\.\.(?:/|$)#', $decodedPath)) {
+    http_response_code(404);
+    header('Content-Type: text/plain; charset=UTF-8');
+    exit('Not Found');
+}
+
+if (PHP_SAPI === 'cli-server' && $decodedPath !== '/') {
+    $publicRoot = realpath(__DIR__);
+    $requestedFile = realpath(__DIR__ . '/' . ltrim($decodedPath, '/'));
+    if ($publicRoot !== false && $requestedFile !== false
+        && str_starts_with($requestedFile, $publicRoot . DIRECTORY_SEPARATOR)
+        && is_file($requestedFile)) {
+        return false;
+    }
 }
 
 if (PHP_SAPI === 'cli-server' && $requestPath === '/_aml/live-reload') {
