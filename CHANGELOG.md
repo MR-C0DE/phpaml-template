@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.5.0-beta.5 — 2026-09-12
+
+- rend le test de la page d’accueil compatible avec les projets classiques et
+  avec leur conversion officielle en application AML View.
+
 ## 0.5.0-beta.4 — 2026-09-12
 
 - impose `public/` comme seule racine web et refuse les traversées de chemin,
