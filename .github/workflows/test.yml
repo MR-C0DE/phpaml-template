@@ -16,20 +16,23 @@ jobs:
         php: ['8.2', '8.4']
     steps:
       - uses: actions/checkout@v4
-      - name: Select the declared framework version
-        id: framework
-        shell: bash
-        run: echo "version=$(php -r '$m=json_decode(file_get_contents("phpaml.json"), true, 512, JSON_THROW_ON_ERROR); echo $m["runtime"]["framework"];')" >> "$GITHUB_OUTPUT"
-      - uses: actions/checkout@v4
-        with:
-          repository: MR-C0DE/phpaml-framework
-          ref: v${{ steps.framework.outputs.version }}
-          path: .framework-source
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
           extensions: pdo, pdo_sqlite
           tools: composer
+      - name: Select the declared framework version
+        id: framework
+        shell: bash
+        run: |
+          version="$(php -r '$m=json_decode(file_get_contents("phpaml.json"), true, 512, JSON_THROW_ON_ERROR); echo $m["runtime"]["framework"];')"
+          test -n "$version"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+      - uses: actions/checkout@v4
+        with:
+          repository: MR-C0DE/phpaml-framework
+          ref: v${{ steps.framework.outputs.version }}
+          path: .framework-source
       - run: composer validate --strict
       - name: Install framework source layout
         shell: bash
