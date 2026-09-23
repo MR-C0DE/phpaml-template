@@ -16,13 +16,31 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Select the declared framework version
+        id: framework
+        shell: bash
+        run: echo "version=$(php -r '$m=json_decode(file_get_contents("phpaml.json"), true, 512, JSON_THROW_ON_ERROR); echo $m["runtime"]["framework"];')" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/checkout@v4
+        with:
+          repository: MR-C0DE/phpaml-framework
+          ref: v${{ steps.framework.outputs.version }}
+          path: .framework-source
+
       - name: Build reproducible archive
         shell: bash
         run: |
           set -euo pipefail
           version="${GITHUB_REF_NAME#v}"
           archive="phpaml-template-${version}.zip"
-          git archive --format=zip --prefix="phpaml-template-${version}/" --output="$archive" "$GITHUB_REF_NAME"
+          staging="$RUNNER_TEMP/phpaml-template-${version}"
+          mkdir -p "$staging"
+          git archive "$GITHUB_REF_NAME" | tar -x -C "$staging"
+          rm -rf "$staging/runtime/framework"
+          mkdir -p "$staging/runtime/framework"
+          cp -R .framework-source/src/. "$staging/runtime/framework/"
+          diff -qr .framework-source/src "$staging/runtime/framework"
+          (cd "$RUNNER_TEMP" && zip -qr "$GITHUB_WORKSPACE/$archive" "phpaml-template-${version}")
           sha256sum "$archive" > "$archive.sha256"
           sha256sum --check "$archive.sha256"
           unzip -t "$archive"
@@ -43,4 +61,3 @@ jobs:
             gh release create "$GITHUB_REF_NAME" "$archive" "$archive.sha256" \
               "${prerelease[@]}" --verify-tag --generate-notes --title "PHPAML Template ${version}"
           fi
-
