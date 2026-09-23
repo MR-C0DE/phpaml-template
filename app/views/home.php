@@ -1,14 +1,21 @@
+<?php
+$view = isset($view) && $view instanceof \PHPAML\Mvc\View
+    ? $view
+    : (isset($this) && $this instanceof \PHPAML\Mvc\View
+        ? $this
+        : throw new \LogicException('Le contexte de vue PHPAML est indisponible.'));
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php $this->partial('seo.php') ?>
+    <?php $view->partial('seo.php') ?>
     <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="/css/index.css">
 </head>
 <body>
-<?php $this->partial('header.php') ?>
+<?php $view->partial('header.php') ?>
 
 <main>
     <section class="hero container">
@@ -54,7 +61,7 @@
     </section>
 </main>
 
-<?php $this->partial('footer.php') ?>
+<?php $view->partial('footer.php') ?>
 <script src="/js/main.js"></script>
 </body>
 </html>
