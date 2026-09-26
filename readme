@@ -66,12 +66,12 @@ Autres commandes
 Architecture
 ------------
 
-- `app/Controllers` et `app/Models` : application ;
-- `app/views` : vues et vues partielles ;
+- `src/controllers` et `src/models` : application ;
+- `src/views` : vues et vues partielles ;
 - `public/` : seul dossier exposé au web, avec `index.php`, CSS, JavaScript et images ;
 - `phpaml.json` : configuration partageable de l’application ;
 - `.env` : secrets et réglages propres à l’environnement ;
-- `routes/WebApp.php` : routes web de l’application ;
+- `src/routes/WebApp.php` : routes web de l’application ;
 - `runtime/config/app.php` : configuration générée automatiquement ;
 - `runtime/database/migrations` : migrations internes ;
 - `tests/` : tests automatisés.
@@ -81,14 +81,14 @@ Le moteur du framework, son autoloading et les dépendances sont isolés dans
 jamais besoin de modifier ce dossier.
 
 En production, configurez Apache ou Nginx avec `public/` comme racine
-documentaire. La racine du projet, `.env`, `routes/`, `database/`, `tests/` et
+documentaire. La racine du projet, `.env`, `src/`, `database/`, `tests/` et
 `runtime/` ne doivent jamais être accessibles par HTTP. Utilisez HTTPS et
 conservez `APP_DEBUG=false`.
 
 Exemple de route dynamique nommée
 ---------------------------------
 
-Dans `routes/WebApp.php` :
+Dans `src/routes/WebApp.php` :
 
     final class WebApp extends Route
     {

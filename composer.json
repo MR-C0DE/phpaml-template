@@ -13,7 +13,12 @@
     "autoload": {
         "psr-4": {
             "PHPAML\\": "runtime/framework/",
-            "App\\": "app/"
+            "App\\Controllers\\": "src/controllers/",
+            "App\\Models\\": "src/models/",
+            "App\\Middleware\\": "src/middleware/",
+            "App\\Services\\": "src/services/",
+            "App\\Routes\\": "src/routes/",
+            "App\\": "src/"
         }
     },
     "config": {

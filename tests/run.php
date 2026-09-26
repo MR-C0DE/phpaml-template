@@ -19,7 +19,10 @@ if (is_file($installedAutoloader)) {
     require_once $root . '/runtime/framework/Autoloader.php';
     Autoloader::register([
         'PHPAML\\' => $root . '/runtime/framework',
-        'App\\' => $root . '/app',
+        'App\\Controllers\\' => $root . '/src/controllers',
+        'App\\Models\\' => $root . '/src/models',
+        'App\\Routes\\' => $root . '/src/routes',
+        'App\\' => $root . '/src',
     ]);
 }
 

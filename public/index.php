@@ -30,7 +30,7 @@ if (PHP_SAPI === 'cli-server' && $decodedPath !== '/') {
 
 if (PHP_SAPI === 'cli-server' && $requestPath === '/_aml/live-reload') {
     $fingerprint = [];
-    foreach ([$root . '/app', $root . '/routes', $root . '/database', __DIR__] as $watchedRoot) {
+    foreach ([$root . '/src', $root . '/database', __DIR__] as $watchedRoot) {
         if (!is_dir($watchedRoot)) { continue; }
         $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($watchedRoot, FilesystemIterator::SKIP_DOTS));
         foreach ($files as $file) {
@@ -56,7 +56,13 @@ if (is_file($moduleAutoloader)) {
         exit('Application indisponible.');
     }
     require_once $frameworkAutoloader;
-    \PHPAML\Autoloader::register(['PHPAML\\' => $root . '/runtime/framework', 'App\\' => $root . '/app']);
+    \PHPAML\Autoloader::register([
+        'PHPAML\\' => $root . '/runtime/framework',
+        'App\\Controllers\\' => $root . '/src/controllers',
+        'App\\Models\\' => $root . '/src/models',
+        'App\\Routes\\' => $root . '/src/routes',
+        'App\\' => $root . '/src',
+    ]);
 }
 
 /**

@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.5.0-beta.7 — 2026-09-26
+
+- unifie le projet classique sous `src/` pour les contrôleurs, modèles, vues,
+  middlewares, services et routes ;
+- retire les dossiers racine `app/` et `routes/` des nouveaux projets ;
+- référence Framework `0.3.0-beta.5` et adapte Composer, PHPStan, le rechargement
+  automatique, les tests et la documentation à cette structure.
+
 ## 0.5.0-beta.6 — 2026-09-12
 
 - adapte le test du point d’entrée au contrat AML View, où le frontend est
