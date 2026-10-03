@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.5.0-beta.8 — 2026-10-03
+
+- référence Framework `0.3.0-beta.6` ;
+- ajoute des vues d’erreur personnalisables pour les réponses 404, 500 et les
+  autres statuts HTTP ;
+- fournit une feuille de style responsive dédiée aux erreurs ;
+- déclare `src/views/errors` comme emplacement configurable des pages d’erreur.
+
 ## 0.5.0-beta.7 — 2026-09-26
 
 - unifie le projet classique sous `src/` pour les contrôleurs, modèles, vues,
