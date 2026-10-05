@@ -50,3 +50,16 @@ jobs:
         run: composer test:http-security
       - name: Run PHPStan
         run: ./runtime/bin/phpstan analyse --no-progress
+      - name: Verify the generated project root stays minimal
+        if: runner.os != 'Windows'
+        shell: bash
+        run: |
+          staging="$RUNNER_TEMP/phpaml-template-distribution"
+          mkdir -p "$staging"
+          git archive HEAD | tar -x -C "$staging"
+          ./scripts/prepare-distribution.sh "$staging"
+          test "$(find "$staging" -maxdepth 1 -type f -name '*.md' | wc -l | tr -d ' ')" = 1
+          test -f "$staging/README.md"
+          test ! -e "$staging/.github"
+          test ! -e "$staging/docs"
+          test ! -e "$staging/scripts"

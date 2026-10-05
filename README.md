@@ -13,6 +13,14 @@ Le serveur web doit utiliser `public/` comme racine documentaire. Ne publiez
 jamais la racine complète du projet. Copiez `.env.example` vers `.env`, gardez
 `APP_DEBUG=false` en production et servez exclusivement le site en HTTPS.
 
+## Documentation du dépôt
+
+- [Historique des versions](docs/CHANGELOG.md)
+- [Déploiement en production](docs/DEPLOYMENT.md)
+- [Guide de contribution](.github/CONTRIBUTING.md)
+- [Politique de sécurité](.github/SECURITY.md)
+- [Code de conduite](.github/CODE_OF_CONDUCT.md)
+
 ## Licence
 
 PHPAML Application Template est distribué sous [licence MIT](LICENSE).

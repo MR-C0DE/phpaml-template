@@ -43,6 +43,7 @@ jobs:
           staging="$RUNNER_TEMP/phpaml-template-${version}"
           mkdir -p "$staging"
           git archive "$GITHUB_REF_NAME" | tar -x -C "$staging"
+          ./scripts/prepare-distribution.sh "$staging"
           rm -rf "$staging/runtime/framework"
           mkdir -p "$staging/runtime/framework"
           cp -R .framework-source/src/. "$staging/runtime/framework/"
@@ -51,6 +52,10 @@ jobs:
           sha256sum "$archive" > "$archive.sha256"
           sha256sum --check "$archive.sha256"
           unzip -t "$archive"
+
+          markdown_count="$(find "$staging" -maxdepth 1 -type f -name '*.md' | wc -l | tr -d ' ')"
+          test "$markdown_count" = 1
+          test -f "$staging/README.md"
 
       - name: Publish archive and checksum
         env:

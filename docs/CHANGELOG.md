@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.5.0-beta.9 — 2026-10-04
+
+- réduit la racine des applications générées à un unique fichier Markdown,
+  `README.md` ;
+- conserve la documentation technique dans `docs/` et les documents
+  communautaires dans `.github/` au sein du dépôt officiel ;
+- exclut ces documents internes et les fichiers GitHub de l’archive distribuée
+  aux nouveaux projets.
+
 ## 0.5.0-beta.8 — 2026-10-03
 
 - référence Framework `0.3.0-beta.6` ;
