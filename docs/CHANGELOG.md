@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.5.0-beta.10 — 2026-10-13
+
+- référence Framework `0.3.0-beta.7` ;
+- affiche en développement la cause, le fichier applicatif, la ligne et un
+  extrait de source lorsqu’une page PHPAML View ne peut pas être compilée ;
+- conserve une erreur volontairement sobre et sans détails internes en
+  production ;
+- installe le gestionnaire de développement avant le chargement de la
+  configuration afin de diagnostiquer aussi les avertissements et les erreurs
+  de démarrage.
+
 ## 0.5.0-beta.9 — 2026-10-04
 
 - réduit la racine des applications générées à un unique fichier Markdown,

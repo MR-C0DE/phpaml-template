@@ -65,6 +65,8 @@ if (is_file($moduleAutoloader)) {
     ]);
 }
 
+\PHPAML\DevelopmentErrorHandler::install();
+
 /**
  * @param array<string, mixed> $config
  * @return array<string, mixed>

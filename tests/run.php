@@ -12,6 +12,10 @@ use PHPAML\Middleware\MiddlewareInterface;
 use PHPAML\Validation\Validator;
 
 $root = dirname(__DIR__);
+$entrypoint = (string) file_get_contents($root . '/public/index.php');
+if (!str_contains($entrypoint, 'DevelopmentErrorHandler::install()')) {
+    throw new RuntimeException('Le gestionnaire d’erreurs de démarrage doit être installé par le point d’entrée.');
+}
 $installedAutoloader = $root . '/runtime/autoload.php';
 if (is_file($installedAutoloader)) {
     require_once $installedAutoloader;
